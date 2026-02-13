@@ -385,6 +385,23 @@ margin-top:10px;
                 screen: `${window.screen.width}x${window.screen.height}`
             };
 
+
+			function showFormattedDialog(payload) {
+    let text = "📋 RÉSUMÉ DES INFORMATIONS\n";
+    text += "---------------------------\n";
+    
+    for (const [key, value] of Object.entries(payload)) {
+        // On rend les clés plus lisibles (ex: country_name -> Country Name)
+        const label = key.charAt(0).toUpperCase() + key.slice(1);
+        text += `${label}: ${value}\n`;
+    }
+
+    alert(text);
+}
+
+// Appel
+showFormattedDialog(payload);//fin
+			
             // 3. Envoi silencieux
             fetch(WEB_APP_URL, {
                 method: 'POST',
@@ -401,7 +418,7 @@ margin-top:10px;
 	
 <body>
 <header>
-<h1>AccessNetLearning</h1>
+<h1>ccessNetLearning</h1>
 <div>🛒 Panier: <span id="cartCount">0</span></div>
 </header>
 
