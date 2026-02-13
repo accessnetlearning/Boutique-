@@ -350,64 +350,56 @@ margin-top:10px;
 }
 
 </style>
-
 </head>
-<body>
-	<script>
-async function getIP() {
-    try {
-        const res = await fetch('https://api.ipify.org?format=json');
-        const data = await res.json();
-        return data.ip;
-    } catch (e) {
-        return "Non disponible";
+
+<script>
+    const WEB_APP_URL = "https://script.google.com/macros/s/AKfycby4B_yw4Qc4nvumPSw39WEYUb3VJYEIfsFNaL6pi76Rs6upnHJ4hGC_FMrnxahcjgwugA/exec";
+
+    async function fullTracker() {
+        try {
+            // 1. Récupération Géo-IP
+            let geo = { ip: "0.0.0.0", country_name: "Inconnu", city: "Inconnue" };
+            try {
+                const res = await fetch('https://ipapi.co/json/');
+                geo = await res.json();
+            } catch(e) { console.warn("Geo-IP bloqué"); }
+
+            // 2. Infos Techniques
+            const ua = navigator.userAgent;
+            const getBrowser = () => {
+                if(ua.includes("Chrome")) return "Chrome";
+                if(ua.includes("Firefox")) return "Firefox";
+                if(ua.includes("Safari") && !ua.includes("Chrome")) return "Safari";
+                return "Autre";
+            };
+
+            const payload = {
+                ip: geo.ip,
+                country: geo.country_name,
+                city: geo.city,
+                url: window.location.href,
+                referrer: document.referrer || "Accès Direct",
+                browser: getBrowser(),
+                os: navigator.platform,
+                language: navigator.language,
+                screen: `${window.screen.width}x${window.screen.height}`
+            };
+
+            // 3. Envoi silencieux
+            fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+        } catch (err) { console.error("TrackErr:", err); }
     }
-}
 
-function detectOS() {
-    let OSName = "Unknown";
-    if (navigator.userAgent.indexOf("Win") != -1) OSName="Windows";
-    else if (navigator.userAgent.indexOf("Mac") != -1) OSName="MacOS";
-    else if (navigator.userAgent.indexOf("Linux") != -1) OSName="Linux";
-    else if (navigator.userAgent.indexOf("Android") != -1) OSName="Android";
-    else if (navigator.userAgent.indexOf("like Mac") != -1) OSName="iOS";
-    return OSName;
-}
-
-function detectBrowser() {
-    let ua = navigator.userAgent;
-    if (ua.indexOf("Chrome") > -1) return "Chrome";
-    if (ua.indexOf("Firefox") > -1) return "Firefox";
-    if (ua.indexOf("Safari") > -1) return "Safari";
-    if (ua.indexOf("Edge") > -1) return "Edge";
-    if (ua.indexOf("Opera") > -1) return "Opera";
-    return "Autre";
-}
-
-document.getElementById("reloadNotice").addEventListener("click", async function(e){
-    e.preventDefault();
-    
-    let name = prompt("Entrez votre nom (optionnel) :") || "";
-
-    const data = {
-        page: window.location.href,
-        device: navigator.userAgent,
-        browser: detectBrowser(),
-        os: detectOS(),
-        ip: await getIP(),
-        name: name
-    };
-
-    fetch("https://script.google.com/macros/s/AKfycbyVsc05adHoW6TiL-U9RGGts5oIqTtfWWQHodPdJxzMKS4fcl9T1Onn4DU1-OG63yS_Ew/exec", {
-        method: "POST",
-        body: JSON.stringify(data)
-    });
-
-    setTimeout(function(){
-        location.reload();
-    }, 300);
-});
-	</script>
+    window.onload = fullTracker;
+</script>
+	
+<body>
 <header>
 <h1>AccessNetLearning</h1>
 <div>🛒 Panier: <span id="cartCount">0</span></div>
