@@ -524,8 +524,24 @@ window.onload = function() {
 <div class="products" id="productList"></div>
 </div>
 
-<div onmousedown="let el=this; document.onmousemove=(e)=>{el.style.position='fixed'; el.style.left=e.pageX+'px'; el.style.top=e.pageY+'px'}; document.onmouseup=()=>document.onmousemove=null" 
-	style="position: absolute; cursor: move; user-select: none; background: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 8px; z-index: 9999;" class="cart">
+<div <div id="draggableBox" 
+     onmousedown="
+        this.style.transition = 'none';
+        let timer = setTimeout(() => {
+            this.style.cursor = 'grabbing';
+            document.onmousemove = (e) => {
+                let x = Math.max(0, Math.min(e.pageX - this.offsetWidth / 2, window.innerWidth - this.offsetWidth));
+                let y = Math.max(0, Math.min(e.pageY - this.offsetHeight / 2, document.documentElement.scrollHeight - this.offsetHeight));
+                this.style.left = x + 'px';
+                this.style.top = y + 'px';
+            };
+        }, 1500);
+        document.onmouseup = () => {
+            clearTimeout(timer);
+            document.onmousemove = null;
+            this.style.cursor = 'move';
+        };"
+     style="position: absolute; left: 20px; top: 20px; cursor: move; user-select: none; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; width: 220px;" class="cart">
   <h3>Panier</h3>
   <div id="cartItems"></div>
 
