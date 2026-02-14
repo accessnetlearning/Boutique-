@@ -347,14 +347,19 @@ margin-top:10px;
 #cartItems::-webkit-scrollbar-thumb {
   background: #D4AF37; /* Ton vert WhatsApp */
   border-radius: 10px;
-}
+	}
+
+<!-- Overlay d'accueil Premium -->
+
+
+<style>
 #welcomeOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.75);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -362,46 +367,66 @@ margin-top:10px;
 }
 
 .welcomeBox {
-  background: white;
-  padding: 40px;
-  border-radius: 12px;
-  max-width: 500px;
+  background: #ffffff;
+  padding: 45px;
+  border-radius: 14px;
+  max-width: 600px;
+  width: 90%;
   text-align: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-  animation: fadeIn 0.5s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  animation: fadeIn 0.4s ease-in-out;
 }
 
-.welcomeBox h2 {
+.welcomeBox h1 {
+  font-size: 22px;
+  margin-bottom: 25px;
+  line-height: 1.4;
+}
+
+.mainText {
+  font-size: 16px;
+  line-height: 1.7;
   margin-bottom: 20px;
+  color: #333;
 }
 
-.welcomeBox p {
-  margin-bottom: 15px;
+.highlight {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 25px;
+  font-weight: 600;
+  color: #000;
 }
 
-.welcomeBox .small {
-  font-size: 0.9em;
-  opacity: 0.7;
+.small {
+  font-size: 14px;
+  opacity: 0.75;
+  margin-bottom: 30px;
 }
 
 .welcomeBox button {
-  background: #007bff; /* adapte à ta couleur principale */
-  color: white;
+  background: #FFC107; /* TON JAUNE EXACT ICI */
+  color: #000;
   border: none;
-  padding: 12px 25px;
-  border-radius: 6px;
-  cursor: pointer;
+  padding: 14px 28px;
+  border-radius: 8px;
   font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .welcomeBox button:hover {
-  opacity: 0.9;
+  transform: scale(1.05);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
+  from { opacity: 0; transform: translateY(-15px); }
   to { opacity: 1; transform: translateY(0); }
 }
+</style>
+
+
 </style>
 </head>
 
@@ -461,24 +486,33 @@ margin-top:10px;
 <body>
 	<div id="welcomeOverlay">
   <div class="welcomeBox">
-    <h2>Bienvenue sur la version 1.0 de notre Catalogue de Formation 🚀</h2>
-    <p>
-      Cette plateforme est en phase de découverte.<br><br>
-      Explorez librement toutes les fonctionnalités,
-      testez, cliquez, naviguez… sans aucun stress.
+    <h1>Bienvenue sur la première version de notre Catalogue de Formations 🎓</h1>
+
+    <p class="mainText">
+      Vous découvrez actuellement la toute première version de notre boutique digitale.
+      Cette page a été conçue pour vous permettre d’explorer librement toutes les fonctionnalités.
     </p>
+
+    <p class="highlight">
+      ✔ Recherchez des formations  
+      ✔ Testez les filtres  
+      ✔ Ajoutez au panier  
+      ✔ Simulez une commande  
+    </p>
+
     <p class="small">
-      Ici, vous pouvez tout essayer. Aucune action n’aura de conséquence.
+      Vous pouvez tout essayer sans aucune conséquence.  
+      Prenez votre temps et découvrez l’expérience.
     </p>
+
     <button onclick="closeWelcome()">Commencer l'exploration</button>
   </div>
 	</div>
-	<!-- Overlay d'accueil -->
-<script>		
+	<script>
 function closeWelcome() {
   document.getElementById("welcomeOverlay").style.display = "none";
 }
-</script>
+	</script>
 <header>
 <h1>AccessNetLearning</h1>
 <div>🛒 Panier: <span id="cartCount">0</span></div>
