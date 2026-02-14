@@ -521,30 +521,7 @@ window.onload = function() {
 	</details>
 
 
-<div class="products" id="productList" onmousedown="
-        this.style.transition = 'none';
-        window.dragTimer = setTimeout(() => {
-            this.setAttribute('data-drag', 'true');
-            this.style.boxShadow = '0 0 20px #007bff';
-        }, 1500);
-        document.onmousemove = (e) => {
-            if(this.getAttribute('data-drag') === 'true') {
-                this.style.position = 'absolute';
-                this.style.bottom = 'auto';
-                this.style.right = 'auto';
-                let x = Math.max(0, Math.min(e.pageX - this.offsetWidth / 2, window.innerWidth - this.offsetWidth));
-                let y = Math.max(0, Math.min(e.pageY - this.offsetHeight / 2, document.documentElement.scrollHeight - this.offsetHeight));
-                this.style.left = x + 'px';
-                this.style.top = y + 'px';
-            }
-        };"
-     onmouseup="
-        clearTimeout(window.dragTimer);
-        this.setAttribute('data-drag', 'false');
-        document.onmousemove = null;"
-     ondragstart="return false;"
-     style="position:fixed; right:10px; bottom:10px; background:white; padding:15px; width:200px; box-shadow:0 0 10px rgba(0,0,0,0.2); border-radius:8px; max-height:25vh; overflow:auto; user-select:none; z-index:9999;">
-
+<div class="products" id="productList">
   <div class="sidebar">
     <p style="color:#D4AF37; margin:0 0 10px 0;"><b>Formations de haute qualité</b></p>
     
