@@ -484,35 +484,17 @@ margin-top:10px;
 </script>
 	
 <body>
-	<div id="welcomeOverlay">
-  <div class="welcomeBox">
-    <h1>Bienvenue sur la première version de notre Catalogue de Formations 🎓</h1>
-
-    <p class="mainText">
-      Vous découvrez actuellement la toute première version de notre boutique digitale.
-      Cette page a été conçue pour vous permettre d’explorer librement toutes les fonctionnalités.
-    </p>
-
-    <p class="highlight">
-      ✔ Recherchez des formations<br/>
-      ✔ Testez les filtres  <br/>
-      ✔ Ajoutez au panier  ~<br/>
-      ✔ Simulez une commande  
-    </p>
-
-    <p class="small">
-      Vous pouvez tout essayer sans aucune conséquence.  
-      Prenez votre temps et découvrez l’expérience.
-    </p>
-
-    <button onclick="closeWelcome()">Commencer l'exploration</button>
-  </div>
-	</div>
-
 	<script>
-function closeWelcome() {
-  document.getElementById("welcomeOverlay").style.display = "none";
-}
+window.onload = function() {
+  if (confirm(
+    "Bienvenue sur la version MVP de notre catalogue de formations.\n\n" +
+    "Explorez librement toutes les fonctionnalités.\n" +
+    "Vous pouvez tout tester sans aucune conséquence.\n\n" +
+    "Cliquez sur OK pour commencer."
+  )) {
+    console.log("Utilisateur prêt");
+  }
+};
 	</script>
 <header>
 <h1>AccessNetLearning</h1>
