@@ -524,24 +524,35 @@ window.onload = function() {
 <div class="products" id="productList"></div>
 </div>
 
-<div <div id="draggableBox" 
-     onmousedown="
+<div class="cart" onmousedown="
         this.style.transition = 'none';
-        let timer = setTimeout(() => {
-            this.style.cursor = 'grabbing';
-            document.onmousemove = (e) => {
+        window.dragTimer = setTimeout(() => {
+            this.setAttribute('data-drag', 'true');
+            this.style.boxShadow = '0 0 20px #007bff';
+        }, 1500);
+        document.onmousemove = (e) => {
+            if(this.getAttribute('data-drag') === 'true') {
+                this.style.position = 'absolute';
+                this.style.bottom = 'auto';
+                this.style.right = 'auto';
                 let x = Math.max(0, Math.min(e.pageX - this.offsetWidth / 2, window.innerWidth - this.offsetWidth));
                 let y = Math.max(0, Math.min(e.pageY - this.offsetHeight / 2, document.documentElement.scrollHeight - this.offsetHeight));
                 this.style.left = x + 'px';
                 this.style.top = y + 'px';
-            };
-        }, 1500);
-        document.onmouseup = () => {
-            clearTimeout(timer);
-            document.onmousemove = null;
-            this.style.cursor = 'move';
+            }
         };"
-     style="position: absolute; left: 20px; top: 20px; cursor: move; user-select: none; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 1000; width: 220px;" class="cart">
+     onmouseup="
+        clearTimeout(window.dragTimer);
+        this.setAttribute('data-drag', 'false');
+        document.onmousemove = null;"
+     ondragstart="return false;"
+     style="position:fixed; right:10px; bottom:10px; background:white; padding:15px; width:200px; box-shadow:0 0 10px rgba(0,0,0,0.2); border-radius:8px; max-height:25vh; overflow:auto; user-select:none; z-index:9999;">
+
+  <div class="sidebar">
+    <p style="color:#D4AF37; margin:0 0 10px 0;"><b>Formations de haute qualité</b></p>
+    
+    <a href="https://chat.whatsapp.com/IJgDNkFPAbGFkGLTuW0dyQ?mode=gi_t" target="_blank" 
+       style="display:block; background-color:#25D366; color:white; padding:8px; text-decoration:none; border-radius:5px; text-align:center; font-weight:bold; margin-bottom:10px;">
   <h3>Panier</h3>
   <div id="cartItems"></div>
 
