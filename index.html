@@ -502,10 +502,12 @@ window.onload = function() {
 
 <div class="container">
 <div class="sidebar">
-<p style="color:#D4AF37">Formation de haute qualité</p>
+<p style="color:#D4AF37">Formations de haute qualité</p>
 <a href="https://chat.whatsapp.com/IJgDNkFPAbGFkGLTuW0dyQ?mode=gi_t" target="_blank">Groupe WhatsApp</a>
-<h3>Recherche</h3>
-<input type="text" id="search" placeholder="Rechercher...">
+
+	<details>
+  <summary><h3>Recherche</h3></summary>
+  <input type="text" id="search" placeholder="Rechercher...">
 
 <h3>Catégorie</h3>
 <select id="categoryFilter">
@@ -516,6 +518,8 @@ window.onload = function() {
 <input type="number" id="priceFilter" placeholder="Prix maximum">
 
 </div>
+	</details>
+
 
 <div class="products" id="productList"></div>
 </div>
