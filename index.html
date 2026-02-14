@@ -521,13 +521,6 @@ window.onload = function() {
 	</details>
 	
 <div class="products" id="productList">
-  <div class="sidebar">
-    <p style="color:#D4AF37; margin:0 0 10px 0;"><b>Formations de haute qualité</b></p>
-    
-    <a href="https://chat.whatsapp.com/IJgDNkFPAbGFkGLTuW0dyQ?mode=gi_t" target="_blank" 
-       style="display:block; background-color:#25D366; color:white; padding:8px; text-decoration:none; border-radius:5px; text-align:center; font-weight:bold; margin-bottom:10px;"></div>
-</div>
-
 <div class="cart">
   < <h3>Panier</h3>
   <div id="cartItems"></div>
@@ -1553,7 +1546,7 @@ container.innerHTML="";
 list.forEach(p=>{
 container.innerHTML+=`
 <div class="card">
-<h3>${p.id}. ${p.title}</h3>
+<h4>${p.id}. ${p.title}</h4>
 <p>${p.description}</p>
 <p><strong>${p.level}</strong> | ${p.duration}</p>
 <div class="price">${p.price} FCFA</div>
