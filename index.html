@@ -519,8 +519,7 @@ window.onload = function() {
 
 </div>
 	</details>
-
-
+	
 <div class="products" id="productList">
   <div class="sidebar">
     <p style="color:#D4AF37; margin:0 0 10px 0;"><b>Formations de haute qualité</b></p>
@@ -1559,7 +1558,7 @@ container.innerHTML="";
 list.forEach(p=>{
 container.innerHTML+=`
 <div class="card">
-<h3>${p.title}</h3>
+<h3>${p.id}.${p.title}</h3>
 <p>${p.description}</p>
 <p><strong>${p.level}</strong> | ${p.duration}</p>
 <div class="price">${p.price} FCFA</div>
