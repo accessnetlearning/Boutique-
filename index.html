@@ -524,7 +524,8 @@ window.onload = function() {
 <div class="products" id="productList"></div>
 </div>
 
-<div style="position: relative; top: 20px; left: 50px;" class="cart">
+<div onmousedown="let el=this; document.onmousemove=(e)=>{el.style.position='fixed'; el.style.left=e.pageX+'px'; el.style.top=e.pageY+'px'}; document.onmouseup=()=>document.onmousemove=null" 
+	style="position: absolute; cursor: move; user-select: none; background: #fff; padding: 10px; border: 1px solid #ccc; border-radius: 8px; z-index: 9999;" class="cart">
   <h3>Panier</h3>
   <div id="cartItems"></div>
 
